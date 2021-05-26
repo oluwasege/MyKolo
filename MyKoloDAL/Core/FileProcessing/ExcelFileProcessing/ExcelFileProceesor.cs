@@ -15,24 +15,34 @@ namespace MyKoloDAL.Core.FileProcessing.ExcelFileProcessing
 
         public ExcelFileProceesor():base()
         {
-                        
+            if(!File.Exists(Path.Combine(folderName,dBFileName)))
+            {
+                               
+                this.dbFile= WorkBook.Create(ExcelFileFormat.XLS);
+                dbFile.Metadata.Author = "SBSC Segun";
+                
+                WorkSheet SavingsTable = dbFile.CreateWorkSheet("Saving");
+                WorkSheet ExpensesTable = dbFile.CreateWorkSheet("Expense");
+                
+                SavingsTable["A1"].Value = "Id";
+                SavingsTable["B1"].Value = "CreatedDateTime";
+                SavingsTable["C1"].Value = "Amount";
+                SavingsTable["D1"].Value = "Description";
 
-            //Create new Excel WorkBook document. 
-            //The default file format is XLSX, but we can override that for legacy support
-            WorkBook xlsWorkbook = WorkBook.Create(ExcelFileFormat.XLS);
-            xlsWorkbook.Metadata.Author = "IronXL";
-            //Add a blank WorkSheet
-            WorkSheet xlsSheet = xlsWorkbook.CreateWorkSheet("new_sheet");
-            //Add data and styles to the new worksheet
-            xlsSheet["A1"].Value = "Hello World";
-            xlsSheet["A2"].Style.BottomBorder.SetColor("#ff6600");
-            xlsSheet["A2"].Style.BottomBorder.Type = IronXL.Styles.BorderType.Double;
-            //Save the excel file
-            xlsWorkbook.SaveAs("NewExcelFile.xls");
+                ExpensesTable["A1"].Value = "Id";
+                ExpensesTable["B1"].Value = "CreatedDateTime";
+                ExpensesTable["C1"].Value = "Amount";
+                ExpensesTable["D1"].Value = "Description";
+
+                dbFile.Save();
+                
+            }
+
+           
         }
 
 
-        public bool ReadToFile()
+        public bool ReadFromFile()
         {
             return false;
         }

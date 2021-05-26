@@ -10,6 +10,7 @@ namespace MyKoloDAL.Core.FileProcessing
     public class FileProcessorBase
     {
         protected string folderName = FileConstants.DBFOLDER;
+        
         public FileProcessorBase()
         {
             
