@@ -12,10 +12,7 @@ namespace MyKoloDAL.Core.FileProcessing
         protected string folderName = FileConstants.DBFOLDER;
         
         public FileProcessorBase()
-        {
-            
-           
-
+        {    
             if (!Directory.Exists(folderName))
             {
                 Directory.CreateDirectory(folderName);

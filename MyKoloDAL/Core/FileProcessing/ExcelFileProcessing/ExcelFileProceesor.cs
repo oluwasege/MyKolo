@@ -11,11 +11,13 @@ namespace MyKoloDAL.Core.FileProcessing.ExcelFileProcessing
     public class ExcelFileProceesor : FileProcessorBase,IFileProcessor
     {
         private WorkBook dbFile;
-        private string dBFileName = "MyKoloDb.xls";
+        private readonly string dBFileName = "MyKoloDb.xls";
+        
+
 
         public ExcelFileProceesor():base()
         {
-            if(!File.Exists(Path.Combine(folderName,dBFileName)))
+            if(!File.Exists(Path.Combine(folderName, dBFileName)))
             {
                                
                 this.dbFile= WorkBook.Create(ExcelFileFormat.XLS);
@@ -34,11 +36,16 @@ namespace MyKoloDAL.Core.FileProcessing.ExcelFileProcessing
                 ExpensesTable["C1"].Value = "Amount";
                 ExpensesTable["D1"].Value = "Description";
 
-                dbFile.Save();
+                dbFile.SaveAs(Path.Combine(folderName, dBFileName));
+                
+                
                 
             }
-
            
+
+
+
+
         }
 
 
