@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace MyKoloDAL.Core.FileProcessing.Interfaces
 {
-    internal interface IFileProcessor
+    public class SingleFieldMeta
     {
-        bool ReadFromFile();
-        bool WriteToFile(List<SingleFieldMeta> singleRecord);
+        public string ColumnName { get; set; }
+        public object ColunValue { get; set; }
+
     }
 }
